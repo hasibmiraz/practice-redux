@@ -67,9 +67,13 @@ const fetchData = () => {
       .get(API_URL)
       .then((res) => {
         const todos = res.data;
-        todos.map((todo) => console.log(todo.id));
+        const titles = todos.map((todo) => todo.title);
+        dispatch(getTodosSuccess(titles));
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        const errorMessage = err.message;
+        dispatch(getTodosFailed(errorMessage));
+      });
   };
 };
 
