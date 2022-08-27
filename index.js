@@ -65,7 +65,10 @@ const fetchData = () => {
     dispatch(getTodosRequest());
     axios
       .get(API_URL)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        const todos = res.data;
+        todos.map((todo) => console.log(todo.id));
+      })
       .catch((err) => console.log(err.message));
   };
 };
